@@ -49,7 +49,7 @@ Mixin 是 Sass 中用来方便地复用代码的方法，你可以简单点理�
 
 .faded-text {
 	@include opacity(0.8);
-}      
+}
 ```
 
 ## 文本溢出省略显示
@@ -120,15 +120,15 @@ p {
 ```
 @mixin imgRetina($image, $extension, $width, $height, $position: center, $repeat: no-repeat) {
      background: url($image + '.' + $extension) $repeat $position;
-          
-     @media 
+
+     @media
      screen and (-webkit-min-device-pixel-ratio: 2),
      screen and (   min--moz-device-pixel-ratio: 2),
      screen and (   -moz-min-device-pixel-ratio: 2),
      screen and (     -o-min-device-pixel-ratio: 2/1),
      screen and (        min-device-pixel-ratio: 2),
-     screen and (             min-resolution: 192dpi), 
-     screen and (             min-resolution: 2dppx) {    
+     screen and (             min-resolution: 192dpi),
+     screen and (             min-resolution: 2dppx) {
         background: url($image + '@2x' + '.' + $extension) $repeat $position;
         background-size: $width $height;
      }
@@ -154,6 +154,40 @@ p {
 		background: url(images/waterlily@2x.jpg) center no-repeat;
 		background-size: 200px 200px;
 	}
+}
+```
+
+## placeholder
+
+```
+@mixin placeholder {
+    &::-webkit-input-placeholder {
+        @content
+    }
+    &::-moz-placeholder {
+        @content
+    }
+    &:-ms-input-placeholder {
+        @content
+    }
+}
+
+@include placeholder() {
+    color: #666;
+}
+```
+
+**输出结果**
+
+```
+::-webkit-input-placeholder {
+    color: #666;
+}
+::-moz-placeholder {
+    color: #666;
+}
+:-ms-input-placeholder {
+    color: #666;
 }
 ```
 
